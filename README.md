@@ -1,4 +1,4 @@
-# Web Application Development: Functional Programming
+# Web Application Development: Dynamic Product Catalog
 In this example, we will work on updating our web application's content dynamically and adding live search functionality.
 
 We will use the [Shop Homepage](https://startbootstrap.com/template/shop-homepage) template from the [Start Bootstrap website](https://startbootstrap.com/). Download the workshop materials from [here](https://github.com/josecarlosgt/Mayan-Crafts/raw/demo-functional-programming/base.zip).
