@@ -7,11 +7,8 @@
   Avoid creating global variables by implementing all the application
   inside an Immediately Invoked Function Expression (IIFE).
 */
-((window) => {
-    /* An array representing products added to the cart. Each item in this array is a number representing the
-   product's id in the PRODUCTS object */
-    CART = [];
 
+((window) => {
     /**
        Generates the HTML for displaying one product given its id in the
        PRODUCTS object. This function follows a clone-find-update approach:
@@ -87,120 +84,12 @@
         for (let product of products) {
             const productHTML = getProductHTML(product.id);
 
-            /* Customize the product's "Add to cart" button
-               Since we are updating the same object several times, 
-               we can use jQuery's chaining feature. 
-            */
-            productHTML
-                .find(".product-action")
-                .text("Add to cart")
-                .on("click", addProduct).
-                // Add this data property to identify the product when it is added to the cart
-                data("product-id", product.id);
-
-            /* Finally, append the cutomized HTML for each product to the products
+           /* Finally, append the cutomized HTML for each product to the products
                container on the webpage */
             $('#products').append(productHTML);
         }
     }
      
-    /**
-        Add a product to the shopping cart
-    
-        @returns  No value.
-    */
-    function addProduct() {
-        // Use data property added in the showProducts function to identify the product
-        const productId = $(this).data("product-id");
-
-        CART.push(productId);
-
-        updateCartTotal();
-    }
-
-    /**
-        Removes a product from the shopping cart
-    
-        @returns  No value.
-    */
-    function removeProduct() {
-        // Use data property added in the showCart function to identify the product
-        const productCartIndex = $(this).data("product-cart-index");
-
-        CART.splice(productCartIndex, 1);
-
-        updateCartTotal();
-
-        // Use data property added in the showCart function to identify and remove the product
-        $("#product-cart-index-" + productCartIndex).fadeOut(
-            "fast",
-            // After the product fades out, display the entire cart again. 
-            showCart);
-    }
-
-    /**
-        Displays the shopping cart
-    
-        @returns  No value.
-    */
-    function showCart() {
-        // Empty the cart every time it is displayed  
-        $("#products-cart").empty();
-
-        // Traverse the CART array to access all products in the cart
-        for (let i = 0; i < CART.length; i++) {
-
-            // Generate each product's HTML
-            const productHTML = getProductHTML(CART[i]);
-
-            /* Add an id to the product's root HTML element to facilitate its removal
-             when the users removes this product from the cart */
-            productHTML.prop('id', "product-cart-index-" + i);
-
-            // Customize the product's "Remove" button
-            productHTML
-                .find(".product-action")
-                .text("Remove")
-                .on("click", removeProduct).
-                // Add this data property to identify the product when it is removed from the cart
-                data("product-cart-index", i);
-
-            // Display product images in the cart smaller (50% of their original size)
-            productHTML
-                .find(".card-img-top")
-                .addClass("w-50");
-
-            /* Finally, append the cutomized HTML for each product to the cart
-               container on the webpage */
-            $("#products-cart").append(productHTML);
-        }
-
-        // Display empty cart message depending on number of items in the cart
-        if (CART.length == 0) {
-            $("#empty-cart").fadeIn();
-        } else {
-            $("#empty-cart").fadeOut();
-        }
-    }
-
-    /**
-        Update the number of items in the cart shown at the top of the webpage
-    
-        @returns  No value.
-    */
-    function updateCartTotal() {
-        // Update number of items
-        $("#cart-total").text(CART.length);
-
-        /* Switch the cart icon at the top of the webpage to reflect the cart status:
-           empty or not empty. */
-        if (CART.length == 0) {
-            $("#show-cart").find("i").removeClass("bi-cart-fill").addClass("bi-cart2");
-        } else {
-            $("#show-cart").find("i").removeClass("bi-cart2").addClass("bi-cart-fill");
-        }
-    }
-
     /**
         Filters the products displayed on the main web page according to the user-entered query on
         the search bar
@@ -214,7 +103,6 @@
         let results = [];
 
         if (query.length > 0) {
-            console.log(PRODUCTS);
             for (const product of PRODUCTS) {
                 if (product.name.toLowerCase().includes(query)
                     || product.description.toLowerCase().includes(query)) {
@@ -225,24 +113,7 @@
         } else {
             results = PRODUCTS;
         }
-
         showProducts(results);
-    }
-
-    async function submitCart(event) {
-        /* event.preventDefault()
-            https://api.jquery.com/event.preventdefault/ 
-        */
-        event.preventDefault();
-
-        const success = await addCartItems();
-
-        if(success) {
-            $('#feedbackModal').modal('hide');
-        
-            CART = [];
-            updateCartTotal();
-        }
     }
 
     /* .ready(): https://api.jquery.com/ready/
@@ -250,13 +121,9 @@
         becomes SAFE to manipulate. 
     */
     $(document).ready(function () {        
-        // Register event handler for updating the cart when the user clicks the "Cart" button
-        $("#show-cart").on("click", showCart);
-
         // Register event handler for live search when the user types something on the "search" input
-        $("#searchQuery").on("keyup", search);        
+        $("#searchQuery").on("keyup", search);     
 
-        // Register event handler for submitting cart
-        $("#submitButton").on("click", submitCart);        
+        showProducts(PRODUCTS);
     });
 })(window);
