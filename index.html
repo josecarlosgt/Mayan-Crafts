@@ -11,7 +11,16 @@
         <!-- Core theme CSS (includes Bootstrap)-->
         <link href="css/styles.css" rel="stylesheet" />
         <!-- My CSS -->
-        <link href="css/mystyles.css" rel="stylesheet" />
+        <style>
+            header {
+                background: #FFFFFF url(assets/img/header-bg.png) no-repeat center;
+                background-size: cover;		
+            }
+
+            #empty-cart {
+                display: none;
+            }
+        </style>
     </head>
     <body id="start">
         <!-- Navigation-->
@@ -65,7 +74,7 @@
         </section>
         <!-- Footer-->
         <footer class="py-5 bg-success">
-            <div class="container"><p class="m-0 text-center text-white">Copyright &copy; CIS 3610 Fall 2024</p></div>
+            <div class="container"><p class="m-0 text-center text-white">Copyright &copy; Web Design & Development 2024</p></div>
         </footer>
         <!-- Cart Modal-->
         <div class="modal fade" id="feedbackModal" tabindex="-1" aria-labelledby="feedbackModalLabel" aria-hidden="true">
