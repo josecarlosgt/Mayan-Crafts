@@ -48,6 +48,6 @@
     window.PRODUCTS = products;
 
     $(document).ready(function () {
-        showProducts(PRODUCTS);
+        window.showProducts(window.PRODUCTS);
     });    
 })(window);
