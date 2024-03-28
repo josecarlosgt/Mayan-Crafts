@@ -7,9 +7,9 @@ We will use the [Shop Homepage](https://startbootstrap.com/template/shop-homepag
 
 While Central America is well-known for its tropical landscapes, travelers often overlook cultural crafts made by the indigenous people of the region, the Mayans. The purpose of this web application is to promote Mayan handmade crafts as products available for purchase online.  
 
-## Task 1: Add jQuery
+## Task 1: Add JavaScript resources
 
-In the index.html file, add jQuery, Supabase, and custom JavaScript files to your index.html file: 
+Add jQuery, Supabase, and custom JavaScript files to your index.html file: 
 
 ```html
 <!-- jQuery -->
