@@ -122,8 +122,6 @@
     */
     $(document).ready(function () {        
         // Register event handler for live search when the user types something on the "search" input
-        $("#searchQuery").on("keyup", search);     
-
-        showProducts(PRODUCTS);
+        $("#searchQuery").on("keyup", search);
     });
 })(window);

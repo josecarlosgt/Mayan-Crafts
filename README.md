@@ -9,19 +9,24 @@ While Central America is well-known for its tropical landscapes, travelers often
 
 ## Task 1: Add jQuery
 
-In the index.html file, add the latest version of jQuery to your application using Google's CDN: 
+In the index.html file, add jQuery, Supabase, and custom JavaScript files to your index.html file: 
 
 ```html
 <!-- jQuery -->
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
-```
+<!-- Supabase (version 1) using Vanilla JS:
+    Example: https://github.com/supabase/examples-archive/tree/main/supabase-js-v1/auth/javascript-auth 
+    -->
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@1"></script>
 
-We will write our JavaScript code in this file: 
-
-```html
 <!-- My JS -->
-<script src="js/scripts.js"></script>
+<script src="js/main.js"></script>
+
+<!-- Storage with supabase -->
+<script src="js/supabase.js"></script>
 ```
+
+> We will write our JavaScript code in the script.js file:=. 
 
 ## Task 2: Display the products dynamically
 
@@ -129,10 +134,6 @@ Avoid polluting the global scope with [Immediately Invvoked Function Expressions
 ```javascript
 ((window) => {
     ...
-
-    $(document).ready(function () {        
-        showProducts(PRODUCTS);
-    });
 })(window);
 ```
 
